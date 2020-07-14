@@ -281,6 +281,14 @@ by deploying the [release manifest](./release) directly to an existing cluster.
    kubectl apply -f ./istio-manifests
    ```
 
+   **Note**: if you are running this demo in a [GKE On-Prem](https://cloud.google.com/anthos/gke/docs/on-prem/overview) cluster, the Istio ingress gateway selector needs to be changed to `ingress-gke-system`.
+
+   ```sh
+   sed -i -e 's/ingressgateway\ .*/ingress-gke-system/' istio-manifests/frontend-gateway.yaml
+   kubectl apply -f ./istio-manifests
+   ```
+
+
 6. In the root of this repository, run `skaffold run --default-repo=gcr.io/[PROJECT_ID]`,
     where [PROJECT_ID] is your GCP project ID.
 
